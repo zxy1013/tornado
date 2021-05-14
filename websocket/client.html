@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 实现2 4 7步
+        ws = new WebSocket("ws://127.0.0.1:8002");
+        ws.onopen = function () {
+            console.log('客户端发送消息');
+            ws.send('hello') //客户端发送消息
+        };
+        ws.onmessage = function (event) {
+            console.log(event); //客户端接收消息
+        };
+        ws.onclose = function () { //服务端断开时执行
+            console.log('服务端断开了！');
+        };
+    </script>
+</body>
+</html>

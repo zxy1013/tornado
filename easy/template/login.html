@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 使用UIMethod的tab函数 -->
+    {{ tab(11) }}
+    <!-- 设置tab不自动转义 -->
+    {% raw tab(11) %}
+    <!-- 使用UIModule -->
+    {% module Custom(22) %}
+
+
+    <form action="/login" method="POST">
+        <input type="text" name="user"/>
+        <input type="password" name="pwd"/>
+        <input type="submit" value="提交" />{{msg}}
+    </form>
+</body>
+</html>

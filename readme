@@ -1,0 +1,100 @@
+1. 基本操作 /easy/app.py
+    - 路由系统
+        url -> 类（根据method执行方法）
+
+    - 控制器
+        def get(self):
+            self.render
+            self.write
+            self.redirect
+            self.get_argument()
+            self.get_arguments()
+            self.get_cookie()
+            self.set_cookie()
+            self.get_secure_cookie()
+            self.set_secure_cookie()
+            PS: 加密cookie依赖配置文件 cookie_secret
+            self.request.files['fafafa']
+            self._headers
+
+        def post(self):
+            pass
+
+    - 模板引擎（更接近Python）
+        - 基本
+            {{ li[0] }}
+            {% for i in range(10) %}
+            {% end %}
+
+        在模板中自定制方法，在setting中注册
+        - UIMethod
+            - 内容
+
+        在模板中自定制模块
+        - UIModule
+            - 添加 CSS,JS
+            - 内容
+
+
+2. 自定义开源组件 /easy/app02.py
+    - Session
+        自定义Session：
+        1.  super按照顺序查找
+            类名.方法名(self)
+        2. self永远是调用方法的对象
+
+
+3. WebSocket /websocket
+- Http,  通过socket实现，单工通道，请求响应， 短链接，链接后就断开
+- WebSocket，通过 socket实现，双工通道，请求响应+服务端向客户端推送 ，Socket创建连接，不断开。
+
+- socket入手
+- 服务端（socket服务端）
+      1. 服务端开启socket，监听IP和端口
+      3. 服务端允许客户端连接
+      * 5. 服务端接收到xxx，对其签名[sha1，xxx，migic string="258EAFA5-E914-47DA-95CA-C5AB0DC85B11"] migic string固定不变
+      * 6. 加密后的值发送给客户端
+- 客户端（浏览器）
+      2. 客户端发起连接请求（IP和端口）
+      * 4. 客户端生成一个随机字符串xxx，向服务端发送xxx
+      * 7. 客户端接收到加密的值，验证
+
+*为websocket协议
+8.进行收发数据
+
+
+4.实现websocket聊天室 /webchat
+
+
+5.支持异步非阻塞Web框架 /io
+    1. 运算
+        v = 1 and 2 or 3 and 4
+    2. 基本数据类型
+
+    3. 列表生成式
+
+    4. 作用域
+
+    5. 函数的参数和返回值
+
+    6. 迭代器和生成器
+
+    7. 面向对象
+        - 继承
+        - metaclass
+
+    8. 异步IO模块
+
+    9. 异步非阻塞Web框架
+
+    计算型的只能轮询 因为只有一个cpu
+    io型的可以异步非阻塞
+    应用场景：
+    客户端向服务端发送请求，但是服务端处理不了，所以向别人发送请求。并等待别人处理完成后，发送结果给客户端，但是服务端现在空闲
+    支持异步非阻塞Web框架 - Tornado，Nodejs
+    3种：
+    请求先来 等5s处理 期间可以处理其他请求 s2
+    请求发送给别人 等待返回后终止 期间可以处理其他请求 s4
+    请求来了永远等待 某一时刻主动设置 期间可以处理其他请求 s5
+    自定义同步web框架 s6
+    自定义异步非阻塞web框架 s7

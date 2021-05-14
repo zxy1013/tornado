@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            border: 2px solid #dddddd;
+            height: 400px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 750px;margin: 0 auto;">
+        <h1>聊天室</h1>
+        <!-- 聊天框 -->
+        <div class="container">
+        </div>
+        <div class="input">
+            <input type="text" id="txt" />
+            <input type="button" value="发送" id="btn" onclick="sendMessage();" />
+        </div>
+    </div>
+
+    <script src="/static/jquery-1.12.4.js"></script>
+    <script>
+        // 连接chat路由
+        ws = new WebSocket("ws://127.0.0.1:8888/chat");
+        ws.onmessage = function (event) {
+            $('.container').append(event.data); // 前端收消息
+        };
+        ws.onclose = function () { // 服务器断开时执行
+             console.log('服务端断开了！');
+        };
+        function sendMessage() {
+            ws.send($('#txt').val());
+        }
+    </script>
+</body>
+</html>
